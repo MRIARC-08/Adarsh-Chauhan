@@ -1,49 +1,154 @@
 .heroContainer {
   min-height: 100vh;
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  background-color: var(--background);
+  color: var(--foreground);
+  overflow: hidden;
+/* --- NAVIGATION PILL --- */
+.navContainer {
+  margin-top: 2rem;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navLogo {
+  width: 44px;
+  height: 44px;
+  display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  overflow: hidden;
-  background-color: var(--background);
+  font-weight: 700;
+  font-size: 1.2rem;
+  background-color: rgba(25, 25, 25, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  color: #fff;
 }
 
-.baseText, .glowText {
-  position: absolute;
+.navPill {
+  display: flex;
+  align-items: center;
+  background-color: rgba(25, 25, 25, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 9999px;
+  padding: 0 2rem;
+  height: 44px;
+}
+
+.navLinks {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  color: #a1a1aa; /* Zinc 400 */
+}
+
+.navLinks a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navLinks a span {
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.navLinks a span:hover {
+  color: #ffffff;
+}
+
+.navIcon {
+  width: 44px;
+  height: 44px;
+  color: #a1a1aa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: rgba(25, 25, 25, 0.6);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.2s;
+}
+
+.navIcon:hover {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* --- HERO TYPOGRAPHY --- */
+.heroContent {
+  margin-top: 15vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 10;
+  text-align: center;
+}
+
+.title {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: -0.02em;
   margin: 0;
-  font-family: var(--font-playpen), sans-serif;
-  font-size: clamp(5rem, 20vw, 25rem);
-  font-weight: 100;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  line-height: 1;
-  /* Stretch vertically */
-  transform: scaleY(1.8) scaleX(0.9);
-  transform-origin: center;
-  cursor: default;
-  user-select: none;
+  line-height: 1.1;
+  color: #e4e4e7;
 }
 
-.baseText {
-  /* Frosted/rainy glass texture using a noise SVG and gradient */
-  color: transparent;
-  background: 
-    linear-gradient(180deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.05)),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.2'/%3E%3C/svg%3E");
-  -webkit-background-clip: text;
-  background-clip: text;
-  /* Thin consistent base border */
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.15);
+.boldName {
+  font-weight: 600;
+  color: #ffffff;
 }
 
-.glowText {
-  /* No fill, only the border lights up */
-  color: transparent;
-  /* Glowing silver border revealed by cursor */
-  -webkit-text-stroke: 2px #d4d4d8; /* Silver color */
-  
-  /* Add an outer silver glow */
-  filter: drop-shadow(0 0 12px rgba(212, 212, 216, 0.8));
-  
+.subtitle {
+  font-family: var(--font-geist-sans), sans-serif;
+  font-size: 4rem;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+  margin: 0;
+  line-height: 1.1;
+  color: #ffffff;
+}
+
+.italicSerif {
+  font-family: var(--font-playfair), serif;
+  font-weight: 400;
+  font-style: italic;
+  color: #d4d4d8; /* Slightly softer white for the serif */
+}
+
+/* --- PROFILE IMAGE --- */
+.profileWrapper {
+  position: absolute;
+  bottom: -15vh; /* Drop further below to pull the head down */
+  width: 100%;
+  max-width: 1200px; /* Increased to scale up massively */
+  height: 95vh; /* Larger height pulls the head closer to text */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 5;
+  /* Fades out the bottom of the image smoothly into the black background */
+  -webkit-mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 80%, transparent 100%);
+  /* Ensure the wrapper doesn't block clicks from above text if they overlap */
   pointer-events: none;
+}
+
+.profileImage {
+  object-fit: contain;
+  object-position: bottom center;
+  width: 100%;
+  height: 100%;
+  filter: grayscale(100%) contrast(1.15) brightness(0.9);
+  pointer-events: auto; /* Allow hover on the image itself */
 }

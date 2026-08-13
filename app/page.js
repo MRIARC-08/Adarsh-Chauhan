@@ -1,55 +1,108 @@
 "use client";
+import Image from "next/image";
+import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 
-import { useMotionValue, useSpring, motion, useMotionTemplate } from "framer-motion";
-import { useRef } from "react";
+import { useState, useEffect } from "react";
 import styles from "./hero.module.css";
+import { NavBar } from "../components/NavBar";
+import { GlowingTimeline } from "../components/GlowingTimeline";
+import { HorizontalScrollGallery } from "../components/HorizontalScrollGallery";
+import { CapabilitiesTable } from "../components/CapabilitiesTable";
+import { impactItems, experience, projects } from "../lib/data";
 
 export default function Home() {
-  const containerRef = useRef(null);
-  
-  // Motion values to track mouse position
-  const cursorX = useMotionValue(-1000);
-  const cursorY = useMotionValue(-1000);
-  
-  // Spring configuration for smooth tracking
-  const springConfig = { damping: 40, stiffness: 300, mass: 1 };
-  const smoothX = useSpring(cursorX, springConfig);
-  const smoothY = useSpring(cursorY, springConfig);
+  const roles = [
+    { p1: "System", p2: "Thinker", italicIndex: 1 },
+    { p1: "Lead", p2: "Designer", italicIndex: 2 },
+    { p1: "Creative", p2: "Engineer", italicIndex: 2 },
+    { p1: "Design", p2: "Mentor", italicIndex: 2 },
+  ];
+  const [keywordIndex, setKeywordIndex] = useState(0);
 
-  const handleMouseMove = (e) => {
-    if (!containerRef.current) return;
-    
-    // Get bounding client rect to find cursor position relative to the container
-    const rect = containerRef.current.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    
-    cursorX.set(x);
-    cursorY.set(y);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setKeywordIndex((prev) => (prev + 1) % roles.length);
+    }, 3500); 
+    return () => clearInterval(interval);
+  }, [roles.length]);
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+    visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
   };
-  
-  // Create a tighter, sharper radial gradient mask
-  const maskImage = useMotionTemplate`radial-gradient(150px circle at ${smoothX}px ${smoothY}px, black 10%, rgba(0,0,0,0.2) 50%, transparent 100%)`;
 
   return (
-    <div 
-      className={styles.heroContainer}
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-    >
-      {/* Base Text (Subtle glassy outline) */}
-      <h1 className={styles.baseText}>ADARSH</h1>
+    <>
+      <NavBar />
+      <div className={styles.heroContainer}>
+        {/* Hero Typography */}
+        <motion.div 
+          className={styles.heroContent}
+          initial="hidden"
+          animate="visible"
+          variants={{ visible: { transition: { staggerChildren: 0.15, delayChildren: 0.3 } } }}
+        >
+          <motion.h1 className={styles.title} variants={fadeUp}>
+            Hi, I&apos;m <span className={styles.boldName}>Adarsh</span>
+          </motion.h1>
+          
+          <motion.h2 className={styles.subtitle} variants={fadeUp} style={{ display: "flex", justifyContent: "center", width: "100%" }}>
+            <div style={{ position: "relative", height: "1.2em", width: "100%", display: "flex", justifyContent: "center" }}>
+              <AnimatePresence mode="popLayout">
+                <motion.div
+                  key={roles[keywordIndex].p1 + roles[keywordIndex].p2}
+                  initial={{ opacity: 0, y: 20, filter: "blur(12px)", scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+                  exit={{ opacity: 0, y: -20, filter: "blur(12px)", scale: 1.05 }}
+                  transition={{ duration: 0.8, ease: "easeInOut" }}
+                  style={{ position: "absolute", display: "flex", gap: "0.3em", whiteSpace: "nowrap" }}
+                >
+                  <span className={roles[keywordIndex].italicIndex === 1 ? styles.italicSerif : ""}>
+                    {roles[keywordIndex].p1}
+                  </span>
+                  <span className={roles[keywordIndex].italicIndex === 2 ? styles.italicSerif : ""}>
+                    {roles[keywordIndex].p2}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </motion.h2>
+        </motion.div>
 
-      {/* Hover Text (Convex 3D glass effect revealed by cursor) */}
-      <motion.h1 
-        className={styles.glowText}
-        style={{ 
-          WebkitMaskImage: maskImage, 
-          maskImage: maskImage 
-        }}
-      >
-        ADARSH
-      </motion.h1>
-    </div>
+        {/* Stylized Profile Portrait */}
+        <motion.div 
+          className={styles.profileWrapper}
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <Image src="/profile2.png" alt="Adarsh Portrait" width={1000} height={1000} className={styles.profileImage} priority />
+        </motion.div>
+      </div>
+
+      {/* Content Sections */}
+      <main className="bg-black min-h-screen text-zinc-300 pb-32">
+        
+        <CapabilitiesTable />
+        
+        {/* Experience Section */}
+        <section className="w-full relative py-24 md:py-32 border-t border-white/10">
+          <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent h-48 pointer-events-none" />
+          <div className="max-w-7xl mx-auto px-6 mb-16 text-center relative z-10">
+            <h3 className="text-sm font-mono text-zinc-500 uppercase tracking-widest">Experience</h3>
+          </div>
+          <GlowingTimeline />
+        </section>
+
+        {/* Featured Work */}
+        <section className="w-full relative pt-24 md:pt-32 border-t border-white/10">
+          <div className="max-w-[1400px] mx-auto px-6 mb-8 text-center">
+            <h3 className="text-sm font-mono text-zinc-500 uppercase tracking-widest">Selected Work</h3>
+          </div>
+          <HorizontalScrollGallery />
+        </section>
+      </main>
+    </>
   );
 }
