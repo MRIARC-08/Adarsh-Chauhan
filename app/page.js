@@ -75,8 +75,17 @@ export default function Home() {
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          onContextMenu={(e) => e.preventDefault()}
         >
-          <Image src="/profile2.png" alt="Adarsh Portrait" width={1000} height={1000} className={styles.profileImage} priority />
+          <Image 
+            src="/profile2.png" 
+            alt="Adarsh Portrait" 
+            width={1000} 
+            height={1000} 
+            className={`${styles.profileImage} pointer-events-none select-none`} 
+            draggable={false}
+            priority 
+          />
         </motion.div>
       </div>
 
