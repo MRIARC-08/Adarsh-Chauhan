@@ -16,7 +16,7 @@ export default function Home() {
     { p1: "Systems", p2: "Engineer", italicIndex: 1 },
     { p1: "Fullstack", p2: "Architect", italicIndex: 2 },
     { p1: "Product", p2: "Developer", italicIndex: 2 },
-    { p1: "OSS", p2: "Lead", italicIndex: 2 },
+    { p1: "Open Source", p2: "Dev", italicIndex: 2 },
   ];
   const [keywordIndex, setKeywordIndex] = useState(0);
 
