@@ -1,14 +1,14 @@
-import { NavBar } from "../../components/NavBar";
+"use client";
+
 import Link from "next/link";
-import { experience, education } from "../../lib/data";
 import { TextReveal } from "../../components/TextReveal";
 import { Magnetic } from "../../components/Magnetic";
+import { GlassmorphicBento } from "../../components/resume/GlassmorphicBento";
 
 export default function Resume() {
   return (
-    <main className="bg-black min-h-screen text-zinc-300 font-sans selection:bg-white selection:text-black">
-      <NavBar />
-      <div className="max-w-[1200px] mx-auto px-6 py-32 md:py-48 relative z-10">
+    <main className="bg-black min-h-screen text-zinc-300 font-sans selection:bg-white selection:text-black pt-32 pb-32">
+      <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         {/* Header Grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-white/20 pb-12 mb-16">
@@ -17,66 +17,27 @@ export default function Resume() {
             <p className="text-sm font-mono text-zinc-500 uppercase tracking-widest mt-8">Document Ref: AC-2026-ENG</p>
           </div>
           <div className="md:col-span-1 flex items-end justify-start md:justify-end">
-            <Magnetic strength={15}>
-              <Link href="/docs/adarsh-chauhan-resume.pdf" target="_blank" className="group flex items-center gap-4 text-xs font-mono uppercase tracking-widest text-white hover:text-zinc-400 transition-colors">
-                <span className="w-8 h-[1px] bg-white group-hover:bg-zinc-400 transition-colors"></span>
+            <Magnetic>
+              <Link 
+                href="/docs/adarsh-chauhan-resume.pdf" 
+                target="_blank" 
+                download
+                className="group relative inline-flex items-center gap-3 px-8 py-4 bg-white text-black rounded-full font-mono text-sm uppercase tracking-widest hover:bg-zinc-200 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:shadow-[0_0_50px_rgba(255,255,255,0.6)] hover:-translate-y-1"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-y-1 transition-transform duration-300">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
                 Download PDF
               </Link>
             </Magnetic>
           </div>
         </div>
 
-        {/* Blueprint Grid Layout: Experience */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8 mb-32">
-          <div className="md:col-span-3">
-            <h3 className="text-xs font-mono text-white/40 uppercase tracking-widest sticky top-32">01. Experience</h3>
-          </div>
-          <div className="md:col-span-9 flex flex-col gap-24">
-            {experience.map((exp, i) => (
-              <div key={i} className="grid grid-cols-1 md:grid-cols-8 gap-8 relative group">
-                <div className="absolute -top-4 -left-4 w-2 h-2 border-t border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute -bottom-4 -right-4 w-2 h-2 border-b border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                
-                <div className="md:col-span-2">
-                  <div className="text-xs font-mono text-zinc-500 uppercase mb-2">{exp.period}</div>
-                  <div className="text-xs font-mono text-white/30 uppercase">{exp.label}</div>
-                </div>
-                
-                <div className="md:col-span-6">
-                  <h4 className="text-2xl md:text-3xl font-playfair italic text-white mb-6">{exp.role}</h4>
-                  <p className="text-zinc-400 text-sm md:text-base leading-relaxed font-light mb-8 max-w-2xl">{exp.description}</p>
-                  <div className="flex flex-wrap gap-x-6 gap-y-2">
-                    {exp.stack.map(s => <span key={s} className="text-xs font-mono text-zinc-500 uppercase tracking-wider">{s}</span>)}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Blueprint Grid Layout: Education */}
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-y-16 md:gap-x-8">
-          <div className="md:col-span-3">
-            <h3 className="text-xs font-mono text-white/40 uppercase tracking-widest sticky top-32">02. Education</h3>
-          </div>
-          <div className="md:col-span-9 flex flex-col gap-24">
-            {education.map((edu, i) => (
-              <div key={i} className="grid grid-cols-1 md:grid-cols-8 gap-8 relative group">
-                <div className="absolute -top-4 -left-4 w-2 h-2 border-t border-l border-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute -bottom-4 -right-4 w-2 h-2 border-b border-r border-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                
-                <div className="md:col-span-2">
-                  <div className="text-xs font-mono text-zinc-500 uppercase mb-2">{edu.period}</div>
-                  <div className="text-xs font-mono text-white/30 uppercase">{edu.grade}</div>
-                </div>
-                
-                <div className="md:col-span-6">
-                  <h4 className="text-2xl md:text-3xl font-playfair italic text-white mb-6">{edu.degree}</h4>
-                  <p className="text-zinc-400 text-sm md:text-base leading-relaxed font-light mb-8 max-w-2xl">{edu.school}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* The Selected Template */}
+        <div className="mb-32">
+          <GlassmorphicBento />
         </div>
 
       </div>

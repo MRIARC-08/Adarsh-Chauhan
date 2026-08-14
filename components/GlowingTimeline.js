@@ -1,9 +1,9 @@
 "use client";
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
-import { experience } from "../lib/data";
+import Link from "next/link";
 
-export function GlowingTimeline() {
+export function GlowingTimeline({ items = [] }) {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -25,8 +25,16 @@ export function GlowingTimeline() {
       />
 
       <div className="flex flex-col gap-32 md:gap-48 relative z-10">
-        {experience.map((exp, i) => {
+        {items.map((item, i) => {
           const isEven = i % 2 === 0;
+          
+          const period = item.period;
+          const mainTitle = item.role || item.degree;
+          const subTitle = item.label || item.school;
+          const description = item.description || item.grade;
+          const tags = item.stack || [];
+          const watermark = item.watermark || (subTitle || "").split(" ")[0];
+
           return (
             <motion.div 
               key={i}
@@ -39,7 +47,7 @@ export function GlowingTimeline() {
               
               {/* Massive Watermark Typography in Background */}
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10rem] md:text-[14rem] font-black text-white/5 uppercase tracking-tighter whitespace-nowrap pointer-events-none -z-10 select-none">
-                {exp.label.split(" ")[0]}
+                {watermark}
               </div>
 
               {/* Glowing Dot on the timeline */}
@@ -49,20 +57,35 @@ export function GlowingTimeline() {
               <div className="hidden md:block md:w-1/2" />
 
               {/* Content Box */}
-              <div className={`w-full md:w-1/2 pl-12 pr-6 md:px-16 ${isEven ? "md:text-right" : "md:text-left"} pt-2 md:pt-0`}>
-                <div className="text-xs font-mono text-zinc-500 uppercase tracking-widest mb-4">{exp.period}</div>
-                <h3 className="text-3xl md:text-5xl font-playfair italic text-white mb-2">{exp.role}</h3>
-                <h4 className="text-lg font-medium text-zinc-400 mb-8">{exp.label}</h4>
-                <p className={`text-zinc-400 font-light leading-relaxed mb-8 ${isEven ? "md:ml-auto" : ""} max-w-md`}>
-                  {exp.description}
-                </p>
-                <div className={`flex flex-wrap gap-2 ${isEven ? "md:justify-end" : "md:justify-start"}`}>
-                  {exp.stack.map(s => (
-                    <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-zinc-300">
-                      {s}
-                    </span>
-                  ))}
+              <div className={`w-full md:w-1/2 pl-12 pr-6 md:px-16 ${isEven ? "md:text-right flex flex-col md:items-end" : "md:text-left flex flex-col md:items-start"} pt-2 md:pt-0`}>
+                <div className="inline-flex items-center px-4 py-1.5 rounded-full bg-white/5 border border-white/20 text-sm font-mono text-white shadow-[0_0_15px_rgba(255,255,255,0.1)] uppercase tracking-widest mb-6 backdrop-blur-sm">
+                  {period}
                 </div>
+                {item.slug ? (
+                  <Link href={`/work/${item.slug}`} className="block group w-max">
+                    <h3 className="text-3xl md:text-5xl font-playfair italic text-white group-hover:text-zinc-300 transition-colors mb-2">
+                      {mainTitle}
+                      <span className="inline-block ml-4 text-2xl md:text-3xl font-sans not-italic text-zinc-600 group-hover:text-white transition-colors opacity-0 group-hover:opacity-100 transform -translate-x-4 group-hover:translate-x-0 duration-300">
+                        →
+                      </span>
+                    </h3>
+                  </Link>
+                ) : (
+                  <h3 className="text-3xl md:text-5xl font-playfair italic text-white mb-2">{mainTitle}</h3>
+                )}
+                <h4 className="text-lg font-medium text-zinc-400 mb-8">{subTitle}</h4>
+                <p className={`text-zinc-400 font-light leading-relaxed mb-8 ${isEven ? "md:ml-auto" : ""} max-w-md`}>
+                  {description}
+                </p>
+                {tags.length > 0 && (
+                  <div className={`flex flex-wrap gap-2 ${isEven ? "md:justify-end" : "md:justify-start"}`}>
+                    {tags.map(s => (
+                      <span key={s} className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs font-mono text-zinc-300">
+                        {s}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
 
             </motion.div>

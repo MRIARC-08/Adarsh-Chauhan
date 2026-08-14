@@ -5,6 +5,8 @@ import { projects } from "../lib/data";
 import Link from "next/link";
 import { Magnetic } from "./Magnetic";
 
+import { MagneticVaultDoor } from "./MagneticVaultDoor";
+
 export function HorizontalScrollGallery() {
   const targetRef = useRef(null);
   
@@ -12,18 +14,28 @@ export function HorizontalScrollGallery() {
     target: targetRef,
   });
 
-  // Depending on how many projects we have, we slide left.
-  // We want the last card to reach the center, not go completely off screen.
-  // Easiest is to slide by a percentage based on number of projects.
-  const slideDistance = `-${(projects.length - 1) * 100}vw`;
+  const selectedSlugs = ["vidyasetu", "devlens", "lakshya-ias"];
+  const filteredProjects = projects.filter(p => selectedSlugs.includes(p.slug));
+  
+  // Math for perfectly aligned horizontal scroll using pure VW units
+  const totalSlides = filteredProjects.length + 1; // Projects + Vault Door
+  const slideWidthVW = 80;
+  const gapVW = 5;
+  const paddingVW = 10;
+  
+  // Total width = (padding * 2) + (all slides) + (all gaps)
+  const totalWidthVW = (paddingVW * 2) + (totalSlides * slideWidthVW) + ((totalSlides - 1) * gapVW);
+  
+  // Scroll exactly (total width - screen width) to align right edge perfectly
+  const slideDistance = `-${totalWidthVW - 100}vw`;
   
   const x = useTransform(scrollYProgress, [0, 1], ["0vw", slideDistance]);
 
   return (
     <section ref={targetRef} className="relative h-[400vh]">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
-        <motion.div style={{ x }} className="flex gap-32 px-[10vw]">
-          {projects.map((project, index) => (
+        <motion.div style={{ x }} className="flex w-max gap-[5vw] px-[10vw]">
+          {filteredProjects.map((project, index) => (
             <div key={project.title} className="w-[80vw] shrink-0 flex flex-col md:flex-row items-center gap-16 md:gap-32 relative">
               
               {/* Massive background watermark */}
@@ -54,7 +66,7 @@ export function HorizontalScrollGallery() {
 
               {/* Interaction / Graphic Side */}
               <div className="w-full md:w-1/2 flex justify-center md:justify-end items-center z-10">
-                <Magnetic strength={40}>
+                <Magnetic>
                   <Link href={`/work/${project.slug}`} className="group relative flex items-center justify-center w-48 h-48 rounded-full border border-white/20 hover:border-white/50 transition-colors duration-500">
                     <div className="absolute inset-0 bg-white/5 rounded-full scale-0 group-hover:scale-100 transition-transform duration-500 ease-out origin-center" />
                     <span className="relative z-10 text-sm font-mono uppercase font-bold tracking-widest text-white group-hover:scale-110 transition-transform duration-300">
@@ -66,6 +78,12 @@ export function HorizontalScrollGallery() {
 
             </div>
           ))}
+
+          {/* Final "View All" Slide with Vault Door */}
+          <div className="w-[80vw] h-[70vh] shrink-0 flex items-center justify-center relative">
+             <MagneticVaultDoor />
+          </div>
+
         </motion.div>
       </div>
     </section>

@@ -5,18 +5,18 @@ import { motion, AnimatePresence } from "framer-motion";
 
 import { useState, useEffect } from "react";
 import styles from "./hero.module.css";
-import { NavBar } from "../components/NavBar";
 import { GlowingTimeline } from "../components/GlowingTimeline";
+import { StatementReveal } from "../components/StatementReveal";
 import { HorizontalScrollGallery } from "../components/HorizontalScrollGallery";
 import { CapabilitiesTable } from "../components/CapabilitiesTable";
 import { impactItems, experience, projects } from "../lib/data";
 
 export default function Home() {
   const roles = [
-    { p1: "System", p2: "Thinker", italicIndex: 1 },
-    { p1: "Lead", p2: "Designer", italicIndex: 2 },
-    { p1: "Creative", p2: "Engineer", italicIndex: 2 },
-    { p1: "Design", p2: "Mentor", italicIndex: 2 },
+    { p1: "Frontend", p2: "Engineer", italicIndex: 1 },
+    { p1: "Fullstack", p2: "Developer", italicIndex: 2 },
+    { p1: "Creative", p2: "Coder", italicIndex: 2 },
+    { p1: "Open Source", p2: "Contributor", italicIndex: 2 },
   ];
   const [keywordIndex, setKeywordIndex] = useState(0);
 
@@ -34,7 +34,6 @@ export default function Home() {
 
   return (
     <>
-      <NavBar />
       <div className={styles.heroContainer}>
         {/* Hero Typography */}
         <motion.div 
@@ -84,6 +83,7 @@ export default function Home() {
       {/* Content Sections */}
       <main className="bg-black min-h-screen text-zinc-300 pb-32">
         
+        <StatementReveal />
         <CapabilitiesTable />
         
         {/* Experience Section */}
@@ -92,7 +92,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto px-6 mb-16 text-center relative z-10">
             <h3 className="text-sm font-mono text-zinc-500 uppercase tracking-widest">Experience</h3>
           </div>
-          <GlowingTimeline />
+          <GlowingTimeline items={experience} />
         </section>
 
         {/* Featured Work */}
@@ -102,6 +102,7 @@ export default function Home() {
           </div>
           <HorizontalScrollGallery />
         </section>
+        
       </main>
     </>
   );

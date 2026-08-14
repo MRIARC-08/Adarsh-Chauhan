@@ -1,5 +1,56 @@
 "use client";
+import React from "react";
 import { motion } from "framer-motion";
+import { Cloud, fetchSimpleIcons, renderSimpleIcon } from "react-icon-cloud";
+
+const slugs = [
+  "nextdotjs",
+  "react",
+  "javascript",
+  "typescript",
+  "tailwindcss",
+  "nodedotjs",
+  "express",
+  "mongodb",
+  "postgresql",
+  "git",
+  "github",
+  "framer",
+  "vercel",
+  "html5",
+  "css3",
+  "firebase",
+  "figma",
+  "python",
+  "docker",
+  "amazons3",
+  "redis"
+];
+
+const cloudProps = {
+  containerProps: {
+    style: {
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      width: "100%",
+    },
+  },
+  options: {
+    reverse: false,
+    depth: 1,
+    wheelZoom: false,
+    imageScale: 2,
+    activeCursor: "default",
+    tooltip: "native",
+    initial: [0.03, -0.03],
+    clickToFront: 500,
+    tooltipDelay: 0,
+    outlineColour: "#0000",
+    maxSpeed: 0.03,
+    minSpeed: 0.01,
+  },
+};
 
 export function CapabilitiesTable() {
   const capabilities = [
@@ -21,16 +72,51 @@ export function CapabilitiesTable() {
     }
   ];
 
+  const [data, setData] = React.useState();
+
+  React.useEffect(() => {
+    fetchSimpleIcons({ slugs }).then(setData);
+  }, []);
+
+  const renderedIcons = React.useMemo(() => {
+    if (!data) return null;
+    return Object.values(data.simpleIcons).map((icon) =>
+      renderSimpleIcon({
+        icon,
+        bgHex: "#0a0a0a",
+        fallbackHex: "#ffffff",
+        minContrastRatio: 1.2,
+        size: 42,
+        aProps: {
+          href: undefined,
+          target: undefined,
+          rel: undefined,
+          onClick: (e) => e.preventDefault(),
+        },
+      })
+    );
+  }, [data]);
+
   return (
     <section className="w-full relative py-24 md:py-32">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex flex-col md:flex-row gap-16 md:gap-32">
           
-          {/* Left Side: Massive Title */}
+          {/* Left Side: Massive Title & Tech Sphere */}
           <div className="w-full md:w-1/3 shrink-0">
-            <h2 className="text-[4rem] md:text-[6rem] font-playfair italic text-white leading-none tracking-tighter sticky top-32">
-              Capabilities
-            </h2>
+            <div className="sticky top-32 flex flex-col gap-16">
+              <h2 className="text-[4rem] md:text-[6rem] font-playfair italic text-white leading-none tracking-tighter">
+                Capabilities
+              </h2>
+              
+              <div className="hidden md:flex w-full max-w-[300px] justify-center items-center opacity-70 hover:opacity-100 transition-opacity duration-500">
+                {renderedIcons && (
+                  <Cloud {...cloudProps}>
+                    {renderedIcons}
+                  </Cloud>
+                )}
+              </div>
+            </div>
           </div>
 
           {/* Right Side: The Structured Table */}
@@ -57,6 +143,15 @@ export function CapabilitiesTable() {
                 </div>
               </motion.div>
             ))}
+            
+            {/* Mobile-only Tech Sphere */}
+            <div className="md:hidden w-full flex justify-center items-center opacity-70 hover:opacity-100 transition-opacity duration-500 mt-16 pt-8 border-t border-white/10">
+              {renderedIcons && (
+                <Cloud {...cloudProps}>
+                  {renderedIcons}
+                </Cloud>
+              )}
+            </div>
           </div>
 
         </div>
