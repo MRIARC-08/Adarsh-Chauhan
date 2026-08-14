@@ -13,10 +13,10 @@ import { impactItems, experience, projects } from "../lib/data";
 
 export default function Home() {
   const roles = [
-    { p1: "Frontend", p2: "Engineer", italicIndex: 1 },
-    { p1: "Fullstack", p2: "Developer", italicIndex: 2 },
-    { p1: "Creative", p2: "Coder", italicIndex: 2 },
-    { p1: "Open Source", p2: "Contributor", italicIndex: 2 },
+    { p1: "Systems", p2: "Engineer", italicIndex: 1 },
+    { p1: "Fullstack", p2: "Architect", italicIndex: 2 },
+    { p1: "Product", p2: "Developer", italicIndex: 2 },
+    { p1: "OSS", p2: "Lead", italicIndex: 2 },
   ];
   const [keywordIndex, setKeywordIndex] = useState(0);
 
