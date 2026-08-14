@@ -48,8 +48,8 @@ export function Preloader() {
           transition={{ duration: 0.8, ease: [0.76, 0, 0.24, 1] }}
           className="fixed inset-0 z-[100] bg-black flex flex-col items-center justify-center pointer-events-none"
         >
-          <div className="absolute bottom-16 right-16 flex items-baseline gap-2">
-            <span className="text-[10rem] font-playfair italic text-white tracking-tighter leading-none">
+          <div className="absolute bottom-12 md:bottom-16 right-12 md:right-16 flex items-baseline gap-2">
+            <span className="text-[5rem] md:text-[8rem] font-playfair italic text-white tracking-tighter leading-none">
               {counter}
             </span>
             <span className="text-2xl font-mono text-zinc-500">%</span>

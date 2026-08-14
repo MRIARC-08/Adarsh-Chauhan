@@ -154,3 +154,12 @@
   filter: grayscale(100%) contrast(1.15) brightness(0.9);
   pointer-events: auto; /* Allow hover on the image itself */
 }
+
+@media (max-width: 768px) {
+  .profileWrapper {
+    bottom: -2vh;
+    height: 75vh;
+    width: 150%;
+    left: -25%;
+  }
+}
