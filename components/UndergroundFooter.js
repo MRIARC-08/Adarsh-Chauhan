@@ -16,7 +16,7 @@ export function UndergroundFooter() {
             <h2 className="text-sm font-mono text-zinc-500 uppercase tracking-widest">Available for Freelance</h2>
             <button 
               onClick={() => setIsModalOpen(true)}
-              className="text-left text-[10vw] font-playfair italic leading-none tracking-tighter text-white hover:opacity-80 transition-opacity"
+              className="text-left text-[15vw] md:text-[10vw] font-playfair italic leading-none tracking-tighter text-white hover:opacity-80 transition-opacity"
             >
               Let&apos;s Talk.
             </button>
@@ -36,10 +36,9 @@ export function UndergroundFooter() {
         </div>
         
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center text-xs font-mono uppercase tracking-widest text-zinc-600 pt-16 border-t border-white/5">
-          <div className="flex gap-8 mb-4 md:mb-0">
-            <Link href="https://github.com/MRIARC-08" target="_blank" className="hover:text-white transition-colors">GitHub</Link>
-            <Link href="https://linkedin.com/in/adarsh-chauhan" target="_blank" className="hover:text-white transition-colors">LinkedIn</Link>
-            <Link href="https://twitter.com/adarsh_chauhan" target="_blank" className="hover:text-white transition-colors">Twitter</Link>
+          <div className="flex flex-wrap gap-4 md:gap-8 mb-4 md:mb-0 justify-center">
+            <Link href="https://github.com/MRIARC-08" target="_blank" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:-translate-y-0.5 transition-all text-zinc-300">GitHub</Link>
+            <Link href="https://www.linkedin.com/in/adarsh-chauhan-yug" target="_blank" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:-translate-y-0.5 transition-all text-zinc-300">LinkedIn</Link>
           </div>
           <div>
             © 2026 Adarsh Chauhan. All Rights Reserved.

@@ -46,10 +46,10 @@ export function HorizontalScrollGallery() {
               {/* Text Content */}
               <div className="w-full md:w-1/2 flex flex-col gap-6 z-10">
                 <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest">{project.label}</span>
-                <h2 className="text-6xl md:text-8xl font-playfair italic text-white tracking-tighter leading-none">
+                <h2 className="font-playfair italic text-white tracking-tighter leading-none" style={{ fontSize: "clamp(2.5rem, 8vw, 6rem)" }}>
                   {project.title}
                 </h2>
-                <h3 className="text-2xl md:text-3xl font-sans font-light text-zinc-300 mt-4">
+                <h3 className="font-sans font-light text-zinc-300 mt-4" style={{ fontSize: "clamp(1.2rem, 4vw, 1.875rem)" }}>
                   {project.subtitle}
                 </h3>
                 <p className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed mt-4">
@@ -80,8 +80,10 @@ export function HorizontalScrollGallery() {
           ))}
 
           {/* Final "View All" Slide with Vault Door */}
-          <div className="w-[80vw] h-[70vh] shrink-0 flex items-center justify-center relative">
-             <MagneticVaultDoor />
+          <div className="w-[80vw] h-[100vh] md:h-[70vh] shrink-0 flex items-center justify-center relative">
+             <div className="absolute inset-y-0 -left-[10vw] -right-[10vw] md:inset-0">
+               <MagneticVaultDoor />
+             </div>
           </div>
 
         </motion.div>

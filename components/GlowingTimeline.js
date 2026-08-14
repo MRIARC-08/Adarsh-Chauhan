@@ -46,7 +46,7 @@ export function GlowingTimeline({ items = [] }) {
             >
               
               {/* Massive Watermark Typography in Background */}
-              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[10rem] md:text-[14rem] font-black text-white/5 uppercase tracking-tighter whitespace-nowrap pointer-events-none -z-10 select-none">
+              <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-[15vw] md:text-[14rem] font-black text-white/5 uppercase tracking-tighter whitespace-nowrap pointer-events-none -z-10 select-none">
                 {watermark}
               </div>
 

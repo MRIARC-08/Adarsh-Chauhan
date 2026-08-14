@@ -7,7 +7,7 @@ import { GlassmorphicBento } from "../../components/resume/GlassmorphicBento";
 
 export default function Resume() {
   return (
-    <main className="bg-black min-h-screen text-zinc-300 font-sans selection:bg-white selection:text-black pt-32 pb-32">
+    <main className="bg-black min-h-screen text-zinc-300 font-sans selection:bg-white selection:text-black pt-48 md:pt-32 pb-32">
       <div className="max-w-[1400px] mx-auto px-6 relative z-10">
         
         {/* Header Grid */}

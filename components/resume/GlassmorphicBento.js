@@ -10,7 +10,11 @@ export function GlassmorphicBento() {
         <div className="md:col-span-3 group bg-white/5 backdrop-blur-xl border border-white/10 hover:border-white/20 rounded-3xl p-8 md:p-12 shadow-[0_8px_32px_rgba(0,0,0,0.37)] transition-all duration-500 flex flex-col md:flex-row justify-between items-center md:items-start gap-8">
           <div>
             <h1 className="text-5xl md:text-7xl font-playfair italic text-white mb-2 drop-shadow-lg">{resumeData.header.name}</h1>
-            <p className="text-zinc-400 font-mono uppercase tracking-widest">{resumeData.header.email} • {resumeData.header.phone}</p>
+            <div className="text-zinc-400 font-mono uppercase tracking-widest text-xs md:text-sm flex flex-col md:flex-row md:items-center gap-2 md:gap-3 break-all md:break-normal mt-4 md:mt-0">
+              <span>{resumeData.header.email}</span>
+              <span className="hidden md:inline">•</span>
+              <span>{resumeData.header.phone}</span>
+            </div>
           </div>
           <div className="flex gap-4">
             {resumeData.header.links.map((link, i) => (

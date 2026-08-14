@@ -20,7 +20,7 @@ export default function Work() {
 
   return (
     <main className="bg-black min-h-screen text-zinc-300 font-sans selection:bg-white selection:text-black relative">
-      <div className="pt-32 text-center relative z-10 px-6 max-w-4xl mx-auto">
+      <div className="pt-48 md:pt-32 text-center relative z-10 px-6 max-w-4xl mx-auto">
         <h1 className="text-5xl md:text-7xl font-playfair italic text-white tracking-tighter mb-6">
           The Archive
         </h1>

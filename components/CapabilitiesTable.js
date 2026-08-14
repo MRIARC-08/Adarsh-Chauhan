@@ -105,7 +105,7 @@ export function CapabilitiesTable() {
           {/* Left Side: Massive Title & Tech Sphere */}
           <div className="w-full md:w-1/3 shrink-0">
             <div className="sticky top-32 flex flex-col gap-16">
-              <h2 className="text-[4rem] md:text-[6rem] font-playfair italic text-white leading-none tracking-tighter">
+              <h2 className="font-playfair italic text-white leading-none tracking-tighter" style={{ fontSize: "clamp(2.5rem, 10vw, 6rem)" }}>
                 Capabilities
               </h2>
               

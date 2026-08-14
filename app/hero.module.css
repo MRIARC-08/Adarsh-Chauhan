@@ -98,7 +98,7 @@
 
 .title {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 10vw, 4rem);
   font-weight: 300;
   letter-spacing: -0.02em;
   margin: 0;
@@ -113,7 +113,7 @@
 
 .subtitle {
   font-family: var(--font-geist-sans), sans-serif;
-  font-size: 4rem;
+  font-size: clamp(2.5rem, 10vw, 4rem);
   font-weight: 400;
   letter-spacing: -0.02em;
   margin: 0;

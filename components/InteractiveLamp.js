@@ -120,7 +120,7 @@ export function InteractiveLamp() {
           <motion.div 
             initial={{ opacity: 0, x: -10 }}
             animate={{ opacity: isHovered ? 1 : 0, x: isHovered ? 0 : -10 }}
-            className="absolute top-1/2 -translate-y-1/2 left-[80px] px-3 py-1.5 bg-zinc-900/90 backdrop-blur-md border border-white/10 rounded-md text-[10px] text-zinc-300 font-mono tracking-widest uppercase whitespace-nowrap pointer-events-none z-50 shadow-2xl"
+            className="hidden md:block absolute top-1/2 -translate-y-1/2 left-[80px] px-3 py-1.5 bg-zinc-900/90 backdrop-blur-md border border-white/10 rounded-md text-[10px] text-zinc-300 font-mono tracking-widest uppercase whitespace-nowrap pointer-events-none z-50 shadow-2xl"
           >
             {tooltipText}
           </motion.div>
@@ -143,7 +143,7 @@ export function InteractiveLamp() {
                style={{ boxShadow: isOn ? "0 2px 25px 8px rgba(255, 250, 220, 0.8)" : "none" }} />
 
           {/* Photorealistic Outer Ambient Beam (Spill) */}
-          <div className={`absolute top-[40px] left-1/2 -translate-x-1/2 w-[150vw] h-[120vh] mix-blend-screen pointer-events-none origin-top z-0 transition-opacity duration-500 ${isOn ? 'opacity-100' : 'opacity-0'}`}
+          <div className={`absolute top-[40px] left-1/2 -translate-x-1/2 w-[300vw] md:w-[150vw] h-[120vh] mix-blend-screen pointer-events-none origin-top z-0 transition-opacity duration-500 ${isOn ? 'opacity-100' : 'opacity-0'}`}
                style={{
                  background: "conic-gradient(from 120deg at 50% 0%, transparent 0deg, rgba(255, 250, 220, 0.05) 60deg, transparent 120deg)",
                  WebkitMaskImage: "radial-gradient(100% 100% at 50% 0%, black 10%, transparent 100%)",
@@ -151,7 +151,7 @@ export function InteractiveLamp() {
                }} />
 
           {/* Photorealistic Inner Hotspot Beam */}
-          <div className={`absolute top-[40px] left-1/2 -translate-x-1/2 w-[80vw] h-[100vh] mix-blend-screen pointer-events-none origin-top z-0 transition-opacity duration-500 delay-75 ${isOn ? 'opacity-100' : 'opacity-0'}`}
+          <div className={`absolute top-[40px] left-1/2 -translate-x-1/2 w-[200vw] md:w-[80vw] h-[100vh] mix-blend-screen pointer-events-none origin-top z-0 transition-opacity duration-500 delay-75 ${isOn ? 'opacity-100' : 'opacity-0'}`}
                style={{
                  background: "conic-gradient(from 150deg at 50% 0%, transparent 0deg, rgba(255, 250, 220, 0.15) 30deg, transparent 60deg)",
                  WebkitMaskImage: "linear-gradient(to bottom, black 0%, transparent 100%)",

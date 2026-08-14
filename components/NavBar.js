@@ -29,7 +29,7 @@ export function NavBar() {
 
   return (
     <motion.div 
-      className="fixed top-8 left-0 right-0 z-50 flex items-center justify-center gap-4 px-6"
+      className="fixed top-4 md:top-8 left-0 right-0 z-50 flex flex-wrap md:flex-nowrap items-center justify-center gap-2 md:gap-4 px-2 md:px-6"
       variants={{
         visible: { opacity: 1, y: 0 },
         hidden: { opacity: 0, y: -100 }
@@ -37,7 +37,7 @@ export function NavBar() {
       animate={hidden ? "hidden" : "visible"}
       transition={{ duration: 0.35, ease: "easeInOut" }}
     >
-      <Link href="/" className="px-6 h-11 flex items-center justify-center font-bold text-sm tracking-widest uppercase text-white bg-white/5 backdrop-blur-md border border-white/10 rounded-full hover:bg-white/10 transition-colors relative">
+      <Link href="/" className="px-4 md:px-6 h-10 md:h-11 flex items-center justify-center font-bold text-xs md:text-sm tracking-widest uppercase text-white bg-white/5 backdrop-blur-md border border-white/10 rounded-full hover:bg-white/10 transition-colors relative">
         Adarsh
         {pathname === "/" && (
           <motion.div
@@ -47,8 +47,8 @@ export function NavBar() {
           />
         )}
       </Link>
-      <nav className="flex items-center h-11 px-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-full">
-        <div className="flex gap-8 text-[0.85rem] font-normal">
+      <nav className="flex items-center h-10 md:h-11 px-4 md:px-8 bg-white/5 backdrop-blur-md border border-white/10 rounded-full">
+        <div className="flex gap-4 md:gap-8 text-[0.75rem] md:text-[0.85rem] font-normal">
           {navLinks.map((link) => {
             const isActive = pathname.startsWith(link.href);
             return (

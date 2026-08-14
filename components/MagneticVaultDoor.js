@@ -9,7 +9,7 @@ export function MagneticVaultDoor() {
 
   return (
     <section 
-      className="relative w-full h-full flex items-center justify-center bg-black overflow-hidden cursor-pointer rounded-[3rem] border border-white/10"
+      className="relative w-full h-full flex items-center justify-center bg-black overflow-hidden cursor-pointer rounded-none md:rounded-[3rem] border-none md:border md:border-white/10"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -49,8 +49,8 @@ export function MagneticVaultDoor() {
 
       {/* Instruction Overlay when closed */}
       <div className={`absolute bottom-8 left-1/2 transform -translate-x-1/2 z-30 pointer-events-none transition-opacity duration-300 ${isHovered ? 'opacity-0' : 'opacity-100'}`}>
-        <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest bg-black/50 px-4 py-2 rounded-full backdrop-blur-md">
-          Hover to Open
+        <span className="text-xs font-mono text-zinc-500 uppercase tracking-widest bg-black/50 px-4 py-2 rounded-full backdrop-blur-md whitespace-nowrap">
+          Hover or Tap to Open
         </span>
       </div>
 
