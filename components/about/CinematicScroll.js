@@ -29,7 +29,7 @@ export function CinematicScroll() {
           style={{ opacity: opacityIntro }}
           className="absolute w-full px-4 text-7xl md:text-9xl font-playfair italic text-white tracking-tighter"
         >
-          About.
+          My Story.
         </motion.h1>
         
         <motion.h2 
