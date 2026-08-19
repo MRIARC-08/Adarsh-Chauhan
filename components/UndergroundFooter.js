@@ -38,6 +38,7 @@ export function UndergroundFooter() {
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row justify-between items-center text-xs font-mono uppercase tracking-widest text-zinc-600 pt-16 border-t border-white/5">
           <div className="flex flex-wrap gap-4 md:gap-8 mb-4 md:mb-0 justify-center">
             <Link href="https://github.com/MRIARC-08" target="_blank" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:-translate-y-0.5 transition-all text-zinc-300">GitHub</Link>
+            <Link href="https://www.instagram.com/direct/t/17847032267739548/" target="_blank" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:-translate-y-0.5 transition-all text-zinc-300">Instagram</Link>
             <Link href="https://www.linkedin.com/in/adarsh-chauhan-yug" target="_blank" className="px-4 py-2 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:text-white hover:-translate-y-0.5 transition-all text-zinc-300">LinkedIn</Link>
           </div>
           <div>
