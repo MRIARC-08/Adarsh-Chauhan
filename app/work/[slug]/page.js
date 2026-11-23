@@ -92,7 +92,7 @@ export default async function ProjectDetail({ params }) {
                 <Magnetic>
                   <Link href={project.href} target="_blank" className="group relative flex items-center justify-center w-32 h-32 md:w-40 md:h-40 rounded-full border border-white/20 hover:border-white/50 transition-colors duration-500">
                     <span className="text-[10px] md:text-xs font-mono uppercase font-bold tracking-widest text-center px-4">
-                      View<br/>GitHub
+                      {project.href.includes('github.com') ? (<>View<br/>GitHub</>) : (<>View<br/>Project</>)}
                     </span>
                   </Link>
                 </Magnetic>
