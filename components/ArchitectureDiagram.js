@@ -45,6 +45,44 @@ export const ArchitectureDiagram = ({ slug }) => {
   );
 
   const diagrams = {
+    "nerra": (
+      <div className="flex flex-col items-center justify-center w-full h-full p-8 max-w-4xl mx-auto">
+        <Node title="Manuscript" subtitle="Chapter by Chapter" colorClass="border-rose-500/20 shadow-[0_0_30px_-10px_rgba(244,63,94,0.15)] md:w-72" />
+        <ArrowYDesktop />
+        <Node title="Extraction Pipeline" subtitle="FastAPI + Language Model" colorClass="border-purple-500/20 shadow-[0_0_30px_-10px_rgba(168,85,247,0.15)] md:w-96" />
+        <ArrowYDesktop />
+        <div className="flex flex-col md:flex-row gap-6 md:gap-12 w-full justify-center">
+          <Node title="PostgreSQL" subtitle="Verified Story Records" colorClass="border-blue-500/20" />
+          <Node title="Neo4j" subtitle="Story World Graph" colorClass="border-emerald-500/20" />
+        </div>
+        <ArrowYDesktop />
+        <Node title="Next.js Review UI" subtitle="Author Decides" colorClass="border-white/10 md:w-72" />
+      </div>
+    ),
+    "tch-tools": (
+      <div className="flex flex-col md:flex-row items-center justify-center w-full h-full p-8 max-w-6xl mx-auto">
+        <Node title="Tool SDK" subtitle="TypeScript Definitions" colorClass="border-sky-500/20 shadow-[0_0_30px_-10px_rgba(14,165,233,0.15)]" />
+        <ArrowX /><ArrowY />
+        <div className="flex flex-col gap-6">
+           <Node title="Permission Layer" subtitle="Deny by Default" colorClass="border-orange-500/20 shadow-[0_0_30px_-10px_rgba(249,115,22,0.15)]" />
+           <Node title="Runtime" subtitle="Traces & Output Limits" colorClass="border-white/10" />
+        </div>
+        <ArrowX /><ArrowY />
+        <Node title="Adapters" subtitle="MCP & Agent Frameworks" colorClass="border-emerald-500/20 shadow-[0_0_30px_-10px_rgba(16,185,129,0.15)]" />
+      </div>
+    ),
+    "biscuit": (
+      <div className="flex flex-col items-center justify-center w-full h-full p-8 max-w-4xl mx-auto">
+        <Node title="Project Archives" subtitle="PRs & Discussions" colorClass="border-zinc-500/30 md:w-72" />
+        <ArrowYDesktop />
+        <Node title="Extraction + Verification" subtitle="Quotes Checked Against Source" colorClass="border-purple-500/20 shadow-[0_0_30px_-10px_rgba(168,85,247,0.15)] md:w-96" />
+        <ArrowYDesktop />
+        <div className="flex flex-col md:flex-row gap-6 md:gap-12 w-full justify-center">
+          <Node title="Decision Records" subtitle="PostgreSQL + pgvector" colorClass="border-blue-500/20" />
+          <Node title="PR Watchdog" subtitle="Audit-Only by Default" colorClass="border-emerald-500/20" />
+        </div>
+      </div>
+    ),
     "lakshya-ias": (
       <div className="flex flex-col md:flex-row items-center justify-center w-full h-full p-8 max-w-5xl mx-auto">
         <Node title="Next.js Client" subtitle="Tailwind & GSAP" colorClass="border-blue-500/20 shadow-[0_0_30px_-10px_rgba(59,130,246,0.15)]" />
