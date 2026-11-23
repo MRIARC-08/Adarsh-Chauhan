@@ -14,7 +14,7 @@ export function HorizontalScrollGallery() {
     target: targetRef,
   });
 
-  const selectedSlugs = ["vidyasetu", "devlens", "lakshya-ias"];
+  const selectedSlugs = ["nerra", "tch-tools", "biscuit", "vidyasetu", "devlens", "lakshya-ias"];
   const filteredProjects = projects.filter(p => selectedSlugs.includes(p.slug));
   
   // Math for perfectly aligned horizontal scroll using pure VW units
@@ -32,7 +32,7 @@ export function HorizontalScrollGallery() {
   const x = useTransform(scrollYProgress, [0, 1], ["0vw", slideDistance]);
 
   return (
-    <section ref={targetRef} className="relative h-[400vh]">
+    <section ref={targetRef} className="relative h-[800vh]">
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         <motion.div style={{ x }} className="flex w-max gap-[5vw] px-[10vw]">
           {filteredProjects.map((project, index) => (
