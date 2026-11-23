@@ -14,7 +14,7 @@ export function HorizontalScrollGallery() {
     target: targetRef,
   });
 
-  const selectedSlugs = ["vidyasetu", "devlens", "lakshya-ias"];
+  const selectedSlugs = ["nerra", "tch-tools", "biscuit"];
   const filteredProjects = projects.filter(p => selectedSlugs.includes(p.slug));
   
   // Math for perfectly aligned horizontal scroll using pure VW units
