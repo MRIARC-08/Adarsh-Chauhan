@@ -5,6 +5,9 @@ import { projects } from "../../lib/data";
 
 // Ensure projects have the correct watermarks from the previous iterations
 const projectWatermarks = {
+  "nerra": "STORY",
+  "tch-tools": "TOOLS",
+  "biscuit": "WHY",
   "vidyasetu": "EDTECH",
   "lakshya-ias": "CIVIL",
   "where-is-my-bus": "TRANSIT",
