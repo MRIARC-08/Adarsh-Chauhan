@@ -49,11 +49,10 @@ export const ArchitectureDiagram = ({ slug }) => {
       <div className="flex flex-col items-center justify-center w-full h-full p-8 max-w-4xl mx-auto">
         <Node title="Manuscript" subtitle="Chapter by Chapter" colorClass="border-rose-500/20 shadow-[0_0_30px_-10px_rgba(244,63,94,0.15)] md:w-72" />
         <ArrowYDesktop />
-        <Node title="Extraction Pipeline" subtitle="FastAPI + Language Model" colorClass="border-purple-500/20 shadow-[0_0_30px_-10px_rgba(168,85,247,0.15)] md:w-96" />
-        <ArrowYDesktop />
-        <div className="flex flex-col md:flex-row gap-6 md:gap-12 w-full justify-center">
-          <Node title="PostgreSQL" subtitle="Verified Story Records" colorClass="border-blue-500/20" />
-          <Node title="Neo4j" subtitle="Story World Graph" colorClass="border-emerald-500/20" />
+        <div className="flex flex-col md:flex-row items-center w-full justify-center">
+          <Node title="Extraction Pipeline" subtitle="FastAPI + Language Model" colorClass="border-purple-500/20 shadow-[0_0_30px_-10px_rgba(168,85,247,0.15)]" />
+          <ArrowX /><ArrowY />
+          <Node title="Records & Graph" subtitle="PostgreSQL + Neo4j" colorClass="border-emerald-500/20 shadow-[0_0_30px_-10px_rgba(16,185,129,0.15)]" />
         </div>
         <ArrowYDesktop />
         <Node title="Next.js Review UI" subtitle="Author Decides" colorClass="border-white/10 md:w-72" />
